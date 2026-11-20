@@ -1,0 +1,13 @@
+{
+  "name": "oll.fx Chess — Self-play Analysis",
+  "short_name": "oll.fx Chess",
+  "description": "Self-play chess with Stockfish 19 Full analysis. You control both sides.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101713",
+  "theme_color": "#101713",
+  "icons": [
+    { "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

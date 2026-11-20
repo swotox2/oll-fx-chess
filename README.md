@@ -1,34 +1,25 @@
-# oll.fx Chess — Self-play + Stockfish 19 Full
+# oll.fx Chess — UI update
 
-A browser chessboard for one person to play both colors. Stockfish 19 Full analyzes the current position and highlights its best move; it never makes a move for you.
+This update adds:
+- Selected-piece inspection: name, color, square, relative value and movement rules.
+- Smooth move arrival, selection and best-move arrow animations.
+- Soft synthesized move, capture, check, castle and promotion sounds.
+- A sound on/off setting remembered on this device.
+- Warm green, walnut and midnight board palettes (no slate/grey board theme).
+- Suppressed blue mobile tap-highlight while retaining visible keyboard focus.
 
-## Run it
+## Install over your existing Termux/GitHub Pages project
 
-Serve this folder over HTTPS or localhost (recommended):
+Copy this ZIP to Android Downloads, then in Termux run:
 
 ```bash
-python -m http.server 8000
+cd ~/oll-fx-chess
+unzip -o ~/storage/downloads/oll_fx_chess_pro_v2.zip -d .
+git add index.html README.md favicon.svg manifest.webmanifest .nojekyll
+git commit -m "Polish board visuals, piece info and move sounds"
+git push
 ```
 
-Then open http://localhost:8000. A modern browser and an internet connection are required for the first engine load.
+**Do not delete or replace `engine/`.** The existing `engine/stockfish-19-single.js` and matching `.wasm` file stay in place and remain the Stockfish 19 Full build.
 
-## Engine build
-
-The page loads the **full, single-threaded Stockfish 19 WebAssembly build**, not Lite, from the pinned `stockfish@19.0.1` package on jsDelivr:
-
-- `stockfish-19-single.js`
-- `stockfish-19-single.wasm`
-
-The full engine assets are approximately 94 MB in total. They are fetched only by the browser and cached by the browser/CDN where supported. Single-threaded Full does not require cross-origin isolation headers; it still uses the full NNUE network. The page pins the versioned package URL to avoid accidentally loading a different engine release.
-
-## Controls
-
-- You control White and Black. Select a piece, then a destination; drag-and-drop also works.
-- Stockfish analyzes the side to move and highlights the best move with origin/destination markers and an arrow.
-- Change analysis depth or press **Analyze position** to run a fresh search.
-- Stockfish never moves pieces. You decide whether to play the suggestion.
-- New game, undo, board flip, promotion, legal move markers, move list and draw claims are included.
-
-## Notes
-
-The rules and board UI are in `index.html`; `stockfish-worker.js` loads the engine in a dedicated worker. The engine is an external, unmodified WebAssembly build. Stockfish.js and Stockfish are GPL-3.0; see the linked source and license in the app's engine panel.
+This is a static-site update. GitHub Pages serves the files; visitors do not need Termux. The first visit still downloads the large WebAssembly engine.
